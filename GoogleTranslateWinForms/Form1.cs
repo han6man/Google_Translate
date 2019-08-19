@@ -16,5 +16,25 @@ namespace GoogleTranslateWinForms
         {
             InitializeComponent();
         }
+
+        private void toolStripButton_Back_Click(object sender, EventArgs e)
+        {
+            this.webControl1.GoBack();
+        }
+
+        private void toolStripButton_Forward_Click(object sender, EventArgs e)
+        {
+            this.webControl1.GoForward();
+        }
+
+        private void toolStripButton_Reload_Click(object sender, EventArgs e)
+        {
+            this.webControl1.Reload(false);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
