@@ -131,6 +131,7 @@
             this.webControl1.Size = new System.Drawing.Size(685, 258);
             this.webControl1.Source = new System.Uri("https://translate.google.com/", System.UriKind.Absolute);
             this.webControl1.TabIndex = 13;
+            this.webControl1.LoadingFrameComplete += new Awesomium.Core.FrameEventHandler(this.Awesomium_Windows_Forms_WebControl_LoadingFrameComplete);
             // 
             // toolStripDropDownButton_Menu
             // 
@@ -298,6 +299,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(12, 45);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -306,6 +308,7 @@
             // 
             // textBox2
             // 
+            this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(218, 45);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
@@ -332,6 +335,7 @@
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(551, 43);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
@@ -400,6 +404,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Google Translate";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Shown += new System.EventHandler(this.Form1_Shown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);

@@ -94,5 +94,8 @@
   <ItemGroup>
     <None Include="Resources\iconfinder_button_switch_vertical_352886.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\awesomium_1_7_5_1_sdk_win.exe" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
