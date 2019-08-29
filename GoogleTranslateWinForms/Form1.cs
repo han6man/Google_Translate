@@ -33,22 +33,6 @@ namespace GoogleTranslateWinForms
             textBox1.Focus();
         }
 
-        private void Awesomium_Windows_Forms_WebControl_LoadingFrameComplete(object sender, Awesomium.Core.FrameEventArgs e)
-        {
-            isMainFrame = e.IsMainFrame;
-
-            if (framesLoaded < 3)
-            {
-                framesLoaded++;
-                isDomReady = false;
-            }
-            else
-            {
-                framesLoaded = 1;
-                isDomReady = true;
-            }
-        }
-
         private void toolStripButton_Back_Click(object sender, EventArgs e)
         {
             this.webControl1.GoBack();
@@ -66,7 +50,30 @@ namespace GoogleTranslateWinForms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox2.Text = Translate(textBox1.Text, "ru");
+            if (textBox1.Text!=string.Empty && textBox1.Text!=null)
+            {
+                textBox2.Text = Translate(textBox1.Text, "ru");
+            }
+            
+        }
+
+        #region Translating
+        private void Awesomium_Windows_Forms_WebControl_LoadingFrameComplete(object sender, Awesomium.Core.FrameEventArgs e)
+        {
+            isMainFrame = e.IsMainFrame;
+
+            //Loding 3 frames
+            //frame 2 Is MainFrame
+            if (framesLoaded < 3)
+            {
+                framesLoaded++;
+                isDomReady = false;
+            }
+            else
+            {
+                framesLoaded = 1;
+                isDomReady = true;
+            }
         }
 
         /// <summary>
@@ -79,27 +86,43 @@ namespace GoogleTranslateWinForms
         private string Translate(string textToTranslate, string fromLng, string toLng)
         {
             isDomReady = false;
-            string s = null;
+            string t = null;
 
             Uri url = new Uri(String.Format("https://translate.google.com/#view=home&op=translate&sl={0}&tl={1}&text={2}", fromLng, toLng, textToTranslate));
             webControl1.Source = url;
-            //for refreshing HTML
+            //for refreshing webControl1.HTML
             webControl1.Source = webControl1.Source;
 
-            s = Parse();
+            //waiting for loding html
+            while (!isDomReady)
+            {
+                Application.DoEvents();
+            }
 
-            //while (s == null)
-            //{
-            //    webControl1.Source = url;
-            //    webControl1.Source = url;
-            //    s = Parse();
-            //}
+            //Clipboard.Clear();
+            //webControl1.SelectAll();
+            //webControl1.CopyHTML();
+            //string HTML = Clipboard.GetText();
 
-            if (s == null)
+            t = Parse(webControl1.HTML);
+
+            while (t == null)
+            {
+                isDomReady = false;
+                webControl1.Source = url;
+                webControl1.Source = webControl1.Source;
+                while (!isDomReady)
+                {
+                    Application.DoEvents();
+                }
+                t = Parse(webControl1.HTML);
+            }
+
+            if (t == null)
             {
                 return "null";
             }
-            return s;
+            return t;
         }
 
         /// <summary>
@@ -111,31 +134,14 @@ namespace GoogleTranslateWinForms
         private string Translate(string textToTranslate, string toLng)
         {
             isDomReady = false;
-            string s = null;
+            string t = null;
 
             Uri url = new Uri(String.Format("https://translate.google.com/#view=home&op=translate&sl={0}&tl={1}&text={2}", "auto", toLng, textToTranslate));
             webControl1.Source = url;
-            //for refreshing HTML
+            //for refreshing webControl1.HTML
             webControl1.Source = webControl1.Source;
 
-            s = Parse();
-
-            //while (s == null)
-            //{
-            //    webControl1.Source = url;
-            //    webControl1.Source = url;
-            //    s = Parse();
-            //}
-
-            if (s == null)
-            {
-                return "null";
-            }
-            return s;
-        }
-
-        private string Parse()
-        {
+            //waiting for loding html
             while (!isDomReady)
             {
                 Application.DoEvents();
@@ -144,30 +150,51 @@ namespace GoogleTranslateWinForms
             //Clipboard.Clear();
             //webControl1.SelectAll();
             //webControl1.CopyHTML();
-            //s = Clipboard.GetText();
+            //string HTML = Clipboard.GetText();
 
-            string s = webControl1.HTML;
+            t = Parse(webControl1.HTML);
 
-            int substringIndex = s.IndexOf("<span title=\"\">");
-            if (substringIndex == -1)
+            while (t == null)
             {
-                return null;
+                isDomReady = false;
+                webControl1.Source = url;
+                webControl1.Source = webControl1.Source;
+                while (!isDomReady)
+                {
+                    Application.DoEvents();
+                }
+                t = Parse(webControl1.HTML);
             }
-            s = s.Substring(substringIndex + 15);
 
-            substringIndex = s.IndexOf("</span></span>");
-            if (substringIndex == -1)
+            if (t == null)
             {
-                return null;
+                return "null";
             }
-            s = s.Remove(substringIndex);
-
-            s = s.Replace("<br>", "\r\n");
-            s = s.Replace("</span>", "");
-            s = s.Replace("<span title=\"\">", "");
-
-            return s;
+            return t;
         }
 
+        private string Parse(string HTML)
+        {
+            int substringIndex = HTML.IndexOf("<span title=\"\">");
+            if (substringIndex == -1)
+            {
+                return null;
+            }
+            HTML = HTML.Substring(substringIndex + 15);
+
+            substringIndex = HTML.IndexOf("</span></span>");
+            if (substringIndex == -1)
+            {
+                return null;
+            }
+            HTML = HTML.Remove(substringIndex);
+
+            HTML = HTML.Replace("<br>", "\r\n");
+            HTML = HTML.Replace("</span>", "");
+            HTML = HTML.Replace("<span title=\"\">", "");
+
+            return HTML;
+        }
+        #endregion
     }
 }
