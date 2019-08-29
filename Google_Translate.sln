@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleTranslateWinForms", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleTranslateConsole", "GoogleTranslateConsole\GoogleTranslateConsole.csproj", "{626FBFF2-C213-4779-B50B-1E2D6E183FF0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LIB", "LIB", "{62751906-7ED3-4030-92D5-8B6DB1FC4A42}"
+	ProjectSection(SolutionItems) = preProject
+		GoogleTranslateWinForms\lib\awesomium_1_7_5_1_sdk_win.exe = GoogleTranslateWinForms\lib\awesomium_1_7_5_1_sdk_win.exe
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
