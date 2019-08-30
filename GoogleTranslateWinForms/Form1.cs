@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -52,6 +53,11 @@ namespace GoogleTranslateWinForms
         {
             if (textBox1.Text!=string.Empty && textBox1.Text!=null)
             {
+                //WebClient webClient = new WebClient();
+                //webClient.Encoding = System.Text.Encoding.UTF8;
+                //string result = webClient.DownloadString(String.Format("https://translate.google.com/#view=home&op=translate&sl={0}&tl={1}&text={2}", "auto", "ru", textBox1.Text));
+                //textBox2.Text = Parse(result);
+
                 textBox2.Text = Translate(textBox1.Text, "ru");
             }
             
