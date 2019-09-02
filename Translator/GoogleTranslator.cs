@@ -33,38 +33,7 @@ namespace Google_Translate
             this.SourceLanguage = Language.Auto_Detect;
             this.TargetLanguage = Language.English;
 
-            WebConfig webConfig = WebConfig.Default;
-            if (!WebCore.IsInitialized)
-            {
-                WebCore.Initialize(webConfig, true);
-            }
-
-            WebPreferences webPreferences = WebPreferences.Default;
-            //webPreferences.ProxyConfig = "198.1.99.26:3128";
-            //webPreferences.CustomCSS = "body { overflow:hidden; }";
-            //webPreferences.WebSecurity = false;
-            webPreferences.DefaultEncoding = "UTF-8";
-
-            webSession = WebCore.CreateWebSession(webPreferences);
-
-            webView = WebCore.CreateWebView(1366, 768, webSession, WebViewType.Offscreen);
-            webView.LoadingFrameComplete += WebView_LoadingFrameComplete;
-
-            // Load a URL.
-            webView.Source = new Uri("https://translate.google.com/");
-
-            while (!isDomReady)
-            {
-                Thread.Sleep(100);
-                // A Console application does not have a synchronization
-                // context, thus auto-update won't be enabled on WebCore.
-                // We need to manually call Update here.
-                WebCore.Update();
-            }
-
-            //BitmapSurface surface = (BitmapSurface)webView.Surface;
-            //surface.SaveToPNG("result.png", true);
-            //System.Diagnostics.Process.Start("result.png");
+            InitializeBrowser();
         }
 
         /// <summary>
@@ -76,37 +45,7 @@ namespace Google_Translate
             this.SourceLanguage = Language.Auto_Detect;
             this.TargetLanguage = TargetLanguage;
 
-            WebConfig webConfig = WebConfig.Default;
-            if (!WebCore.IsInitialized)
-            {
-                WebCore.Initialize(webConfig, true);
-            }
-
-            WebPreferences webPreferences = WebPreferences.Default;
-            //webPreferences.ProxyConfig = "198.1.99.26:3128";
-            //webPreferences.CustomCSS = "body { overflow:hidden; }";
-            //webPreferences.WebSecurity = false;
-            webPreferences.DefaultEncoding = "UTF-8";
-
-            webSession = WebCore.CreateWebSession(webPreferences);
-
-            webView = WebCore.CreateWebView(1366, 768, webSession, WebViewType.Offscreen);
-            webView.LoadingFrameComplete += WebView_LoadingFrameComplete;
-
-            // Load a URL.
-            webView.Source = new Uri("https://translate.google.com/");
-
-            while (!isDomReady)
-            {
-                Thread.Sleep(100);
-                // A Console application does not have a synchronization
-                // context, thus auto-update won't be enabled on WebCore.
-                // We need to manually call Update here.
-                WebCore.Update();
-            }
-            //BitmapSurface surface = (BitmapSurface)webView.Surface;
-            //surface.SaveToPNG("result.png", true);
-            //System.Diagnostics.Process.Start("result.png");
+            InitializeBrowser();
         }
 
         /// <summary>
@@ -119,6 +58,11 @@ namespace Google_Translate
             this.SourceLanguage = SourceLanguage;
             this.TargetLanguage = TargetLanguage;
 
+            InitializeBrowser();
+        }
+
+        private void InitializeBrowser()
+        {
             WebConfig webConfig = WebConfig.Default;
             if (!WebCore.IsInitialized)
             {
@@ -208,7 +152,7 @@ namespace Google_Translate
         /// <returns></returns>
         private string Parse(string HTML)
         {
-            if (HTML == null || HTML == string.Empty)
+            if (string.IsNullOrEmpty(HTML))
             {
                 //HTML = null;
                 //throw new Exception("string HTML null or empty");
@@ -241,6 +185,11 @@ namespace Google_Translate
         /// <returns></returns>
         private string Translate()
         {
+            if (string.IsNullOrEmpty(this.SourceText))
+            {
+                this.TargetText = this.SourceText;
+                return this.TargetText;
+            }
             if (this.SourceLanguage == null)
             {
                 this.SourceLanguage = Language.Auto_Detect;
