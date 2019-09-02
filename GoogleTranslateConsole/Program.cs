@@ -11,7 +11,7 @@ namespace GoogleTranslateConsole
     {
         static void Main(string[] args)
         {
-            GoogleTranslator translator = new GoogleTranslator("ru");
+            GoogleTranslator translator = new GoogleTranslator(Language.Russian);
             Console.WriteLine(translator.Translate("Test"));
             Console.WriteLine(translator.Translate("Tost"));
             Console.WriteLine(translator.Translate("Bug"));
