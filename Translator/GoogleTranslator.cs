@@ -4,12 +4,16 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Google_Translate
+namespace MDH.Strings.Translation
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class GoogleTranslator
     {
         private int framesLoaded = 1;
@@ -18,10 +22,38 @@ namespace Google_Translate
         private WebView webView;
         private WebSession webSession;
 
-        public string SourceText { get; private set; }
-        public string TargetText { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Text Source_Text { get; private set; } = new Text("", Language.Not_Specified);
+        /// <summary>
+        /// 
+        /// </summary>
+        public Text Target_Text { get; private set; } = new Text("", Language.Not_Specified);
+        /// <summary>
+        /// 
+        /// </summary>
+        public Word SourceWord { get; private set; } = new Word("", Language.Not_Specified, PartOfSpeech.Not_Specified);
+        /// <summary>
+        /// 
+        /// </summary>
+        public Word TargetWord { get; private set; } = new Word("", Language.Not_Specified, PartOfSpeech.Not_Specified);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public string SourceText { get; private set; } = "";
+        /// <summary>
+        /// 
+        /// </summary>
+        public string TargetText { get; private set; } = "";
+        /// <summary>
+        /// 
+        /// </summary>
         public Language SourceLanguage { get; set; } = Language.Auto_Detect;
+        /// <summary>
+        /// 
+        /// </summary>
         public Language TargetLanguage { get; set; } = Language.English;
         
         #region Constractors
@@ -39,7 +71,7 @@ namespace Google_Translate
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="toLng"></param>
+        /// <param name="TargetLanguage"></param>
         public GoogleTranslator(Language TargetLanguage)
         {
             this.SourceLanguage = Language.Auto_Detect;
@@ -51,8 +83,8 @@ namespace Google_Translate
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="fromLng"></param>
-        /// <param name="toLng"></param>
+        /// <param name="SourceLanguage"></param>
+        /// <param name="TargetLanguage"></param>
         public GoogleTranslator(Language SourceLanguage, Language TargetLanguage)
         {
             this.SourceLanguage = SourceLanguage;
@@ -227,7 +259,6 @@ namespace Google_Translate
 
             return Translate();
         }
-
         /// <summary>
         /// 
         /// </summary>
@@ -243,7 +274,6 @@ namespace Google_Translate
 
             return Translate();
         }
-
         /// <summary>
         /// 
         /// </summary>

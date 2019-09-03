@@ -1,4 +1,4 @@
-﻿using Google_Translate;
+﻿using MDH.Strings.Translation;
 using System;
 using System.Collections.Generic;
 using System.Linq;

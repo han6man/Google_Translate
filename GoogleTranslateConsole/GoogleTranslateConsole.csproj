@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Translator\Translator.csproj">
+    <ProjectReference Include="..\Translator\GoogleTranslator.csproj">
       <Project>{F7CC8D4B-9624-43FC-8526-399E8960CAC5}</Project>
-      <Name>Translator</Name>
+      <Name>GoogleTranslator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

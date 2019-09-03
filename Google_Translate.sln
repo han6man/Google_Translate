@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LIB", "LIB", "{62751906-7ED
 		GoogleTranslateWinForms\lib\awesomium_1_7_5_1_sdk_win.exe = GoogleTranslateWinForms\lib\awesomium_1_7_5_1_sdk_win.exe
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Translator", "Translator\Translator.csproj", "{F7CC8D4B-9624-43FC-8526-399E8960CAC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleTranslator", "Translator\GoogleTranslator.csproj", "{F7CC8D4B-9624-43FC-8526-399E8960CAC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
