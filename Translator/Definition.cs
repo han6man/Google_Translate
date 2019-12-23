@@ -5,45 +5,50 @@ namespace MDH.Strings.Translation
     /// <summary>
     /// 
     /// </summary>
-    public class Meaning
+    public class Definition
     {
         /// <summary>
         /// 
         /// </summary>
-        public string Word { get; private set; } = "";
+        public Language DefinitionLanguage { get; private set; }
         /// <summary>
         /// In traditional grammar, a part of speech (abbreviated form: PoS or POS) is a category of words (or, more generally, of lexical items) that have similar grammatical properties.
         /// Words that are assigned to the same part of speech generally display similar synactic behavior—they play similar roles within the grammatical structure of sentences—and sometimes similar morphology in that they undergo inflection for similar properties.
         /// </summary>
-        public PartOfSpeech PartOfSpeech { get; private set; } = PartOfSpeech.Not_Specified;
+        public PartOfSpeech PartOfSpeech { get; private set; }
         /// <summary>
         /// 
         /// </summary>
-        public string Description { get; private set; } = "";
+        public int DefinitionNumber { get; private set; }
         /// <summary>
         /// 
         /// </summary>
-        public string Example { get; private set; } = "";
+        public string DescriptionText { get; private set; }
         /// <summary>
         /// 
         /// </summary>
-        public List<Synonym> Synonyms { get; private set; } = new List<Synonym>();
+        public string Example { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<Synonym> Synonyms { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="word"></param>
+        /// <param name="definitionLanguage"></param>
+        /// <param name="definitionNumber"></param>
         /// <param name="partOfSpeech"></param>
         /// <param name="value"></param>
         /// <param name="example"></param>
-        /// <param name="synonyms"></param>
-        public Meaning(string word, PartOfSpeech partOfSpeech, string value, string example, List<Synonym> synonyms)
+        public Definition(Language definitionLanguage, int definitionNumber, PartOfSpeech partOfSpeech, string value, string example)
         {
-            this.Word = word;
+            this.DefinitionLanguage = definitionLanguage;
+            this.DefinitionNumber = definitionNumber;
             this.PartOfSpeech = partOfSpeech;
-            this.Description = value;
+            this.DescriptionText = value;
             this.Example = example;
-            this.Synonyms = synonyms;
+            Synonyms = null;
         }
     }
 }

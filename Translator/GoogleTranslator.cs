@@ -1,4 +1,5 @@
 ﻿using Awesomium.Core;
+using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -21,23 +22,6 @@ namespace MDH.Strings.Translation
         private bool isMainFrame = false;
         private WebView webView;
         private WebSession webSession;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Text Source_Text { get; private set; } = new Text("", Language.Not_Specified);
-        /// <summary>
-        /// 
-        /// </summary>
-        public Text Target_Text { get; private set; } = new Text("", Language.Not_Specified);
-        /// <summary>
-        /// 
-        /// </summary>
-        public Word SourceWord { get; private set; } = new Word("", Language.Not_Specified, PartOfSpeech.Not_Specified);
-        /// <summary>
-        /// 
-        /// </summary>
-        public Word TargetWord { get; private set; } = new Word("", Language.Not_Specified, PartOfSpeech.Not_Specified);
 
         /// <summary>
         /// 

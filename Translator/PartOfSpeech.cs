@@ -19,7 +19,7 @@ namespace MDH.Strings.Translation
         /// <summary>
         /// Noun (ónoma): a part of speech inflected for case, signifying a concrete or abstract entity
         /// </summary>
-        Noun,
+        noun,
         /// <summary>
         /// 
         /// </summary>
@@ -31,7 +31,7 @@ namespace MDH.Strings.Translation
         /// <summary>
         /// 
         /// </summary>
-        Verb,
+        verb,
         /// <summary>
         /// Verb (rhêma): a part of speech without case inflection, but inflected for tense, person and number, signifying an activity or process performed or undergone
         /// </summary>

@@ -18,7 +18,7 @@ namespace MDH.Strings.Translation
         /// <summary>
         /// 
         /// </summary>
-        public List<Meaning> Meanings { get; private set; } = new List<Meaning>();
+        public List<Definition> Definition { get; private set; } = new List<Definition>();
         /// <summary>
         /// 
         /// </summary>
@@ -36,14 +36,14 @@ namespace MDH.Strings.Translation
         /// 
         /// </summary>
         /// <param name="word"></param>
-        /// <param name="meanings"></param>
+        /// <param name="definition"></param>
         /// <param name="synonyms"></param>
         /// <param name="examplesOfUsing"></param>
         /// <param name="similarWords"></param>
-        public SourceTextDescription(string word, List<Meaning> meanings, List<Synonym> synonyms, List<string> examplesOfUsing, List<string> similarWords)
+        public SourceTextDescription(string word, List<Definition> definition, List<Synonym> synonyms, List<string> examplesOfUsing, List<string> similarWords)
         {
             this.Word = word;
-            this.Meanings = meanings;
+            this.Definition = definition;
             this.Synonyms = synonyms;
             this.ExamplesOfUsing = examplesOfUsing;
             this.SimilarWords = similarWords;

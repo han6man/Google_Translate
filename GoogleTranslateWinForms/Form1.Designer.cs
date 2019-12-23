@@ -66,6 +66,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,7 +81,7 @@
             this.toolStripSplitButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(685, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(923, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -118,7 +119,7 @@
             // 
             this.toolStripAddressBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripAddressBox1.Name = "toolStripAddressBox1";
-            this.toolStripAddressBox1.Size = new System.Drawing.Size(512, 25);
+            this.toolStripAddressBox1.Size = new System.Drawing.Size(750, 25);
             this.toolStripAddressBox1.URL = null;
             this.toolStripAddressBox1.WebControl = this.webControl1;
             // 
@@ -128,9 +129,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.webControl1.Location = new System.Drawing.Point(0, 111);
-            this.webControl1.Size = new System.Drawing.Size(685, 258);
+            this.webControl1.Size = new System.Drawing.Size(923, 258);
             this.webControl1.Source = new System.Uri("https://translate.google.com/", System.UriKind.Absolute);
             this.webControl1.TabIndex = 13;
+            this.webControl1.AddressChanged += new Awesomium.Core.UrlEventHandler(this.Awesomium_Windows_Forms_WebControl_AddressChanged);
             this.webControl1.LoadingFrameComplete += new Awesomium.Core.FrameEventHandler(this.Awesomium_Windows_Forms_WebControl_LoadingFrameComplete);
             // 
             // toolStripDropDownButton_Menu
@@ -293,7 +295,7 @@
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 372);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(685, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(923, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -383,11 +385,20 @@
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 12;
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(632, 45);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(279, 61);
+            this.textBox3.TabIndex = 14;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(685, 394);
+            this.ClientSize = new System.Drawing.Size(923, 394);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.webControl1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label4);
@@ -450,6 +461,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox2;
         private Awesomium.Windows.Forms.WebControl webControl1;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 
